@@ -1,0 +1,1 @@
+var ams = angular.module('ams', []);
