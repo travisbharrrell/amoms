@@ -1,12 +1,54 @@
-<div class="centered container-fluid">
-    <div class="row">
-        <div class="col-xs-12"
-             ng-bind="$ctrl.messages.hello">
-        </div>
+<div>
+    <div ng-if="$ctrl.showLogIn()" class="centered">
+            <div class="amoms-label">AMOM SYSTEM</div>
+            <div class="input-row input-group">
+                <span class="input-group-addon">User:</span>
+                <input type="text" class="form-control" placeholder="Username">
+            </div>
+            <div class="input-row input-group">
+                <span class="input-group-addon">Password:</span>
+                <input type="password" class="form-control">
+            </div>
+            <div class="text-center">
+                <button type="button" 
+                        class="btn btn-success"
+                        ng-click="$ctrl.logIn()">
+                    Log In
+                </button>
+                <button type="button"
+                        class="btn btn-info"
+                        ng-click="$ctrl.showPasswordForm()">
+                    Forgot Password
+                </button>
+            </div>
     </div>
-    <div class="row">
-        <form>
-            
-        </form>
+    <div ng-if="$ctrl.loggedIn">
+        <div class="sidebar">
+            <div class="sidebar-item"
+                 ng-repeat="item in $ctrl.sideBarItems"
+                 ng-class="{'sidebar-item-selected' : item.active}">
+                <span ng-bind="item.name"
+                      ng-click="item.router($ctrl.sideBarDisplayValues)">
+                </span>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div ng-if="$ctrl.showPatients()">
+                PATIENTS
+            </div>
+
+            <div ng-if="$ctrl.showSchedule()">
+                SCHEDULE
+            </div>
+
+            <div ng-if="$ctrl.showReports()">
+                REPORTS
+            </div>
+
+            <div ng-if="$ctrl.showAdmin()">
+                ADMIN
+            </div>
+        </div>
     </div>
 </div>
