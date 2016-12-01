@@ -4,7 +4,7 @@ homescreen.component('homeScreen', {
     templateUrl: '/static/js/homeScreen/homescreen.template.html',
     controller: function () {
         var ctrl = this;
-        ctrl.loggedIn = false;
+        ctrl.loggedIn = true;
         ctrl.passwordForm = false;
         ctrl.sideBarDisplayValues = [true, false, false, false];
         ctrl.contentLabel = "";
@@ -27,6 +27,10 @@ homescreen.component('homeScreen', {
         ctrl.goToPasswordForm = function () {
             ctrl.loggedIn = false;
             ctrl.passwordForm = true;
+        };
+
+        ctrl.showPatientDetails = function (patient) {
+            alert(patient.name + patient.last);
         };
 
         ctrl.showPatients = function () {
@@ -130,7 +134,7 @@ homescreen.component('homeScreen', {
                 name: 'Tom',
                 middle: 'Jim',
                 last: '10',
-            },
+            }
         ]
     }
 });
