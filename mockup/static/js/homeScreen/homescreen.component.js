@@ -3,47 +3,50 @@ var homescreen = angular.module('ams', []);
 homescreen.component('homeScreen', {
     templateUrl: '/static/js/homeScreen/homescreen.template.html',
     controller: function () {
-        this.loggedIn = false;
-        this.passwordForm = false;
-        this.sideBarDisplayValues = [true, false, false, false];
+        var ctrl = this;
+        ctrl.loggedIn = false;
+        ctrl.passwordForm = false;
+        ctrl.sideBarDisplayValues = [true, false, false, false];
+        ctrl.contentLabel = "";
 
-        this.loggedInUser = 'Doctor Rockso';
+        ctrl.loggedInUser = 'Doctor Rockso';
 
-        this.showLogIn = function () {
-            return !this.loggedIn && !this.passwordForm;
+        ctrl.showLogIn = function () {
+            return !ctrl.loggedIn && !ctrl.passwordForm;
         };
 
-        this.showPasswordForm = function () {
-            return !this.loggedIn && this.passwordForm;
+        ctrl.showPasswordForm = function () {
+            return !ctrl.loggedIn && ctrl.passwordForm;
         };
 
-        this.logIn = function () {
-            this.loggedIn = true;
-            this.passwordForm = false;
+        ctrl.logIn = function () {
+            ctrl.loggedIn = true;
+            ctrl.passwordForm = false;
         };
 
-        this.goToPasswordForm = function () {
-            this.loggedIn = false;
-            this.passwordForm = true;
+        ctrl.goToPasswordForm = function () {
+            ctrl.loggedIn = false;
+            ctrl.passwordForm = true;
         };
 
-        this.showPatients = function () {
-            return this.loggedIn && this.sideBarDisplayValues[0] === true;
+        ctrl.showPatients = function () {
+            ctrl.contentLabel = "Patients";
+            return ctrl.loggedIn && ctrl.sideBarDisplayValues[0] === true;
         };
 
-        this.showSchedule = function () {
-            return this.loggedIn && this.sideBarDisplayValues[1] === true;
+        ctrl.showSchedule = function () {
+            return ctrl.loggedIn && ctrl.sideBarDisplayValues[1] === true;
         };
 
-        this.showReports = function () {
-            return this.loggedIn && this.sideBarDisplayValues[2] === true;
+        ctrl.showReports = function () {
+            return ctrl.loggedIn && ctrl.sideBarDisplayValues[2] === true;
         };
 
-        this.showAdmin = function () {
-            return this.loggedIn && this.sideBarDisplayValues[3] === true;
+        ctrl.showAdmin = function () {
+            return ctrl.loggedIn && ctrl.sideBarDisplayValues[3] === true;
         };
         
-        this.sideBarItems = [
+        ctrl.sideBarItems = [
             {
                 name: 'Patients', 
                 router: function (displayValues) {
@@ -81,5 +84,53 @@ homescreen.component('homeScreen', {
                 }
             }
         ];
+
+        ctrl.patients = [
+            {
+                name: 'Tom',
+                middle: 'Jim',
+                last: '2',
+            },
+            {
+                name: 'Tom',
+                middle: 'Jim',
+                last: '3',
+            },
+            {
+                name: 'Tom',
+                middle: 'Jim',
+                last: '4',
+            },
+            {
+                name: 'Tom',
+                middle: 'Jim',
+                last: '5',
+            },
+            {
+                name: 'Tom',
+                middle: 'Jim',
+                last: '6',
+            },
+            {
+                name: 'Tom',
+                middle: 'Jim',
+                last: '7',
+            },
+            {
+                name: 'Tom',
+                middle: 'Jim',
+                last: '8',
+            },
+            {
+                name: 'Tom',
+                middle: 'Jim',
+                last: '9',
+            },
+            {
+                name: 'Tom',
+                middle: 'Jim',
+                last: '10',
+            },
+        ]
     }
 });

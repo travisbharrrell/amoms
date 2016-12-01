@@ -34,21 +34,49 @@
         </div>
 
         <div class="content-area">
+            <!-- Patients View -->
             <div ng-if="$ctrl.showPatients()">
-                PATIENTS
+                <div class="container-fluid content-container">
+                    <span class="content-container-label" ng-bind="$ctrl.contentLabel"></span>
+                    <div class="row" style="margin-bottom: 10px;">
+                        <span class="col-xs-1">Name</span>
+                        <span class="col-xs-8">
+                            <input type="text"
+                               class="form-control" 
+                               placeholder="Enter patient name.">
+                        </span>
+                        <span class="col-xs-3">
+                            <button type="submit" class="btn btn-default">Find Patient Matches</button>
+                        </span>
+                    </div>
+                    <div class="row"
+                         ng-repeat="patient in $ctrl.patients"
+                         ng-class-odd="'odd-row'">
+                         <span class="col-xs-1" ng-bind="patient.name"></span>
+                         <span class="col-xs-1" ng-bind="patient.middle"></span>
+                         <span class="col-xs-1" ng-bind="patient.last"></span>
+                    </div>
+                </div>
             </div>
+            <!---->
 
+            <!-- Schedule View -->
             <div ng-if="$ctrl.showSchedule()">
                 SCHEDULE
             </div>
+            <!---->
 
+            <!-- Reports View -->
             <div ng-if="$ctrl.showReports()">
                 REPORTS
             </div>
+            <!---->
 
+            <!-- Admin View -->
             <div ng-if="$ctrl.showAdmin()">
                 ADMIN
             </div>
+            <!---->
         </div>
     </div>
 </div>

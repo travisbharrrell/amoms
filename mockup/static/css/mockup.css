@@ -45,3 +45,20 @@
     top: 0;
     right: 0;
 }
+
+.content-container {
+    border: 1px solid black;
+    margin: 20px 10px;
+    height: 95vh;
+}
+
+.content-container-label {
+    background: white;
+    padding: 5px 10px;
+    top: -10px;
+    position: relative;
+}
+
+.odd-row {
+    background: lightgray;
+}
