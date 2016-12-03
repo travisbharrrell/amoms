@@ -7,11 +7,13 @@ homescreen.component('homeScreen', {
         ctrl.loggedIn = true;
         ctrl.passwordForm = false;
         ctrl.showPatientDetailScreen = false;
-        ctrl.sideBarDisplayValues = [true, false, false, false];
+        ctrl.showUserDetailScreen = false;
+        ctrl.sideBarDisplayValues = [false, false, false, true];
         ctrl.contentLabel = "";
         ctrl.selectedItem = {};
         ctrl.viewRx = false;
         ctrl.apptStarted = false;
+        ctrl.editMode = false; 
 
         ctrl.loggedInUser = 'Doctor Rockso';
 
@@ -36,6 +38,41 @@ homescreen.component('homeScreen', {
         ctrl.showPatientDetails = function (patient) {
             ctrl.selectedItem = patient;
             ctrl.showPatientDetailScreen = true;
+        };
+
+        ctrl.showUserDetail = function (user) {
+            if (!user) {
+                ctrl.selectedItem = {
+                    username: '',
+                    privLevel: '',
+                    practType: '',
+                    name: '',
+                    dob: '',
+                    startDate: '',
+                    rfc: '',
+                    cedula: '',
+                    address: '',
+                    shifts: {
+                        M: {work: false, times: null},
+                        T: {work: false, times: null},
+                        W: {work: false, times: null},
+                        R: {work: false, times: null},
+                        F: {work: false, times: null},
+                        St: {work: false, times: null},
+                        Sn: {work: false, times: null}
+                    },
+                    apptLength: null,
+                    phone: '',
+                    active: false
+                };
+
+                ctrl.editMode = true;
+            } else {
+                ctrl.selectedItem = user;
+                ctrl.editMode = false;
+            }
+
+            ctrl.showUserDetailScreen = true;
         };
 
         ctrl.getApptBtnLabel = function () {
@@ -400,6 +437,78 @@ homescreen.component('homeScreen', {
                 "date": "August 05, 2016",
                 "recordingDr": "Dr Sosa Whitehead",
                 "note": "Tempor deserunt deserunt duis sint dolor ullamco reprehenderit sint exercitation amet."
+            }
+        ];
+
+        ctrl.users = [
+            {
+                username: 'Receptionist',
+                privLevel: 'Receptionist',
+                practType: null,
+                name: 'Receptionist One',
+                dob: 'August 05, 1970',
+                startDate: 'September 10, 2006',
+                rfc: '213123123123',
+                cedula: null,
+                address: '123 Sydney Blvd Marcus, Ga',
+                shifts: {
+                    M: {work: true, times: '8a-5p'},
+                    T: {work: true, times: '8a-5p'},
+                    W: {work: true, times: '8a-5p'},
+                    R: {work: true, times: '8a-5p'},
+                    F: {work: true, times: '8a-5p'},
+                    St: {work: false, times: null},
+                    Sn: {work: false, times: null}
+                },
+                apptLength: null,
+                phone: '123-345-1234',
+                active: true
+            },
+            {
+                username: 'Practitioner',
+                privLevel: 'Practitioner',
+                practType: 'Nutritionist',
+                name: 'Nutritionist Guy',
+                dob: 'January 09, 1988',
+                startDate: 'May 10, 2014',
+                rfc: '213123123123',
+                cedula: '12312312312312',
+                address: '600 Walker Way Marcus, Ga',
+                shifts: {
+                    M: {work: true, times: '8a-5p'},
+                    T: {work: false, times: null},
+                    W: {work: true, times: '8a-5p'},
+                    R: {work: false, times: null},
+                    F: {work: true, times: '8a-5p'},
+                    St: {work: false, times: null},
+                    Sn: {work: false, times: null}
+                },
+                apptLength: null,
+                phone: '312-313-1234',
+                active: true
+            },
+            {
+                username: 'Admin',
+                privLevel: 'Admin',
+                practType: null,
+                name: 'Admin One',
+                dob: 'July 24, 1988',
+                startDate: 'September 10, 2006',
+                rfc: '213123123123',
+                cedula: '12312312312312',
+                address: '10 Peachtree St Atlanta, Ga',
+                shifts: {
+                    M: {work: true, times: '8a-5p'},
+                    T: {work: true, times: '8a-5p'},
+                    W: {work: true, times: '8a-5p'},
+                    R: {work: true, times: '8a-5p'},
+                    F: {work: true, times: '8a-5p'},
+                    St: {work: false, times: null},
+                    Sn: {work: false, times: null}
+                },
+                apptLength: null,
+                phone: '123-345-1234',
+                active: true
             }
         ];
     }

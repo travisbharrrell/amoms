@@ -161,7 +161,63 @@
 
             <!-- Admin View -->
             <div ng-if="$ctrl.showAdmin()">
-                ADMIN
+                <div class="container-fluid content-container" ng-if="!$ctrl.showUserDetailScreen">
+                    <span class="content-container-label">User Management</span>
+                    <div class="btn-row">
+                        <button type="button" 
+                                class="btn btn-info"
+                                ng-click="$ctrl.showUserDetail(null)">
+                                New User
+                        </button>
+                    </div>
+                    <div class="row content-header">
+                        <span class="col-xs-3">Username</span>
+                        <span class="col-xs-3">Employee Name</span>
+                        <span class="col-xs-2">Privilege Level</span>
+                        <span class="col-xs-2">Practitioner Type</span>
+                        <span class="col-xs-2">Active</span>
+                    </div>
+                    <div class="row content-row"
+                         ng-repeat="user in $ctrl.users | orderBy: 'username'"
+                         ng-class-odd="'odd-row'"
+                         ng-click="$ctrl.showUserDetail(user)">
+                            <span class="col-xs-3" ng-bind="user.username"></span>
+                            <span class="col-xs-3" ng-bind="user.name"></span>
+                            <span class="col-xs-2" ng-bind="user.privLevel"></span>
+                            <span class="col-xs-2" ng-bind="user.practType || ''"></span>
+                            <span class="col-xs-2">{{user.active ? 'Active' : 'Disabled'}}</span>
+                    </div>
+                </div>
+                <div class="container-fluid content-container" ng-if="$ctrl.showUserDetailScreen">
+                    <div class="btn-row">
+                        <span ng-if="$ctrl.editMode">
+                            <button type="button" class="btn btn-info">Save</button>
+                            <button type="button" class="btn btn-default">Cancel</button>
+                        </span>
+                        <span ng-if="!$ctrl.editMode">
+                            <button type="button" class="btn btn-info">Edit User</button>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <span class="col-xs-2 patient-label">Name</span>
+                        <span class="col-xs-4" 
+                              ng-bind="$ctrl.selectedItem.name" 
+                              ng-if="!$ctrl.editMode">
+                        </span>
+                        <span class="col-xs-4" ng-if="$ctrl.editMode">
+                            <input class="form-control" type="text" ng-model="$ctrl.selectedItem.name">
+                        </span>
+
+                        <span class="col-xs-2 patient-label">Date of Birth</span>
+                        <span class="col-xs-4" 
+                              ng-bind="$ctrl.selectedItem.dob"
+                              ng-if="!$ctrl.editMode">
+                        </span>
+                        <span class="col-xs-4" ng-if="$ctrl.editMode">
+                            <input class="form-control" type="text" ng-model="$ctrl.selectedItem.dob">
+                        </span>
+                    </div>
+                </div>
             </div>
             <!---->
         </div>
