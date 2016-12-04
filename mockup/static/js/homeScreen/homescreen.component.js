@@ -10,7 +10,7 @@ homescreen.component('homeScreen', {
         ctrl.showUserDetailScreen = false;
         ctrl.sideBarDisplayValues = [true, false, false, true];
         ctrl.contentLabel = "";
-        ctrl.selectedItem = {};
+        ctrl.selectedItem = null; //{};
         ctrl.viewRx = false;
         ctrl.apptStarted = false;
         ctrl.editMode = false; 
@@ -120,14 +120,14 @@ homescreen.component('homeScreen', {
             return ctrl.loggedIn && ctrl.sideBarDisplayValues[0] === true;
         };
 
-        ctrl.showSchedule = function () {
+        ctrl.showReports = function () {
             return ctrl.loggedIn && ctrl.sideBarDisplayValues[1] === true;
         };
 
-        ctrl.showReports = function () {
+        ctrl.showSchedule = function () {
             return ctrl.loggedIn && ctrl.sideBarDisplayValues[2] === true;
         };
-
+        
         ctrl.showAdmin = function () {
             return ctrl.loggedIn && ctrl.sideBarDisplayValues[3] === true;
         };
@@ -136,6 +136,7 @@ homescreen.component('homeScreen', {
             {
                 name: 'Patients', 
                 router: function (displayValues) {
+                    ctrl.selectedItem = null;
                     displayValues[0] = true;
                     displayValues[1] = false;
                     displayValues[2] = false;
@@ -145,6 +146,7 @@ homescreen.component('homeScreen', {
             {
                 name: 'Reports', 
                 router: function (displayValues) {
+                    ctrl.selectedItem = null;
                     displayValues[0] = false;
                     displayValues[1] = true;
                     displayValues[2] = false;
@@ -154,6 +156,7 @@ homescreen.component('homeScreen', {
             {
                 name: 'Schedule', 
                 router: function (displayValues) {
+                    ctrl.selectedItem = null;
                     displayValues[0] = false;
                     displayValues[1] = false;
                     displayValues[2] = true;
@@ -163,6 +166,7 @@ homescreen.component('homeScreen', {
             {
                 name: 'Admin', 
                 router: function (displayValues) {
+                    ctrl.selectedItem = null;
                     displayValues[0] = false;
                     displayValues[1] = false;
                     displayValues[2] = false;
@@ -428,7 +432,134 @@ homescreen.component('homeScreen', {
                 "numKids": 6
             }
         ];
+        
+        ctrl.appointments = [
+            {
+                "practitioner":"Nutritionist Guy",
+                "patient":"Shari Talley",
+                "patientPhone":"7705551212",
+                "datetime":"2016-12-04T10:00:00",
+                "state":"C"
+            },
+            {
+                "practitioner":"Nutritionist Guy",
+                "patient":"Brown Fowler",
+                "patientPhone":"7705552212",
+                "datetime":"",
+                "state":""
+            },
+            {
+                "practitioner":"Nutritionist Guy",
+                "patient":"Carter Young",
+                "patientPhone":"7705553212",
+                "datetime":"2016-12-05T10:00:00",
+                "state":"C"
+            },
+            {
+                "practitioner":"Nutritionist Guy",
+                "patient":"Jacobson Ferguson",
+                "patientPhone":"7705554212",
+                "datetime":"2016-12-05T10:00:00",
+                "state":"C"
+            },
+            {
+                "practitioner":"Nutritionist Guy",
+                "patient":"Grant Roy",
+                "patientPhone":"7705555212",
+                "datetime":"2016-12-05T10:00:00",
+                "state":"C"
+            },
+            {
+                "practitioner":"Nutritionist Guy",
+                "patient":"Osorn Kramer",
+                "patientPhone":"7705556212",
+                "datetime":"2016-12-05T10:00:00",
+                "state":"C"
+            },
+            {
+                "practitioner":"Nutritionist Guy",
+                "patient":"Tracey Ward",
+                "patientPhone":"7705557212",
+                "datetime":"2016-12-05T10:00:00",
+                "state":"C"
+            },
+            {
+                "practitioner":"Nutritionist Guy",
+                "patient":"Tasha Ford",
+                "patientPhone":"7705558212",
+                "datetime":"2016-12-05T10:00:00",
+                "state":"C"
+            },
+            {
+                "practitioner":"Nutritionist Guy",
+                "patient":"Rene Bartlett",
+                "patientPhone":"7705559212",
+                "datetime":"2016-12-05T10:00:00",
+                "state":"C"
+            },
+            {
+                "practitioner":"Nutritionist Guy",
+                "patient":"Lacey Franco",
+                "patientPhone":"7705551211",
+                "datetime":"2016-12-05T10:00:00",
+                "state":"C"
+            },
+            {
+                "practitioner":"Nutritionist Guy",
+                "patient":"Laurel Hale",
+                "patientPhone":"7705551213",
+                "datetime":"2016-12-05T10:00:00",
+                "state":"C"
+            },
+            {
+                "practitioner":"Nutritionist Guy",
+                "patient":"Lee Tran",
+                "patientPhone":"7705551214",
+                "datetime":"2016-12-05T10:00:00",
+                "state":"C"
+            },
+            {
+                "practitioner":"Nutritionist Guy",
+                "patient":"Lelia Ball",
+                "patientPhone":"7705551215",
+                "datetime":"2016-12-05T10:00:00",
+                "state":"C"
+            },
+            {
+                "practitioner":"Nutritionist Guy",
+                "patient":"Kellie Moreno",
+                "patientPhone":"7705551216",
+                "datetime":"2016-12-05T10:00:00",
+                "state":"C"
+            },
+            {
+                "practitioner":"Nutritionist Guy",
+                "patient":"Hannah Lowery",
+                "patientPhone":"7705551217",
+                "datetime":"2016-12-05T10:00:00",
+                "state":"C"
+            },
+            {
+                "practitioner":"Nutritionist Guy",
+                "patient":"Tamera Barnett",
+                "patientPhone":"7705551218",
+                "datetime":"2016-12-05T10:00:00",
+                "state":"C"
+            },
+            {
+                "practitioner":"Nutritionist Guy",
+                "patient":"Huffman Bates",
+                "patientPhone":"7705551219",
+                "datetime":"2016-12-05T10:00:00",
+                "state":"C"
+            }
+        ];
 
+        ctrl.futureAppt = function(appt)
+        {
+            return (new Date(appt.datetime)) > (new Date());
+        }
+        
         ctrl.medicalEvents = [
             {
                 "date": "October 24, 1974",

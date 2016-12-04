@@ -162,7 +162,48 @@
 
             <!-- Reports View -->
             <div ng-if="$ctrl.showReports()">
-                REPORTS
+                <div class="content-container" ng-if="$ctrl.selectedItem == null">
+                    <!-- Report List -->
+                    <span class="content-container-label">Reports</span>
+                    <ul>
+                    <li><span ng-click="$ctrl.selectedItem='UpComing'">Appointment Call List</span>
+                    <li><span ng-click="$ctrl.selectedItem='Missed'">Missed Appointments</span>
+                    <li><span ng-click="$ctrl.selectedItem='OStats'">Office Stats</span>
+                    <li><span ng-click="$ctrl.selectedItem='PStats'">Practitioner Stats</span>
+                    </ul>
+                </div>
+                
+                <div class="content-container container-fluid" ng-if="$ctrl.selectedItem == 'UpComing'">
+                    <!-- Up Coming Appointment -->
+                    <span class="content-container-label">Appointments</span>
+                    <div class="row content-header">
+                        <span class="col-xs-2 patient-label">Name</span>
+                        <span class="col-xs-2 patient-label">Phone</span>
+                        <span class="col-xs-2 patient-label">Appt. Time</span>
+                    </div>
+                    <div class="row event-row"
+                         ng-repeat="appointment in $ctrl.appointments | orderBy: 'datetime' | filter:$ctrl.futureAppt"
+                         ng-class-odd="'odd-row'">
+                         <span class="col-xs-2" ng-bind="appointment.patient"></span>
+                         <span class="col-xs-2" ng-bind="appointment.patientPhone"></span>
+                         <span class="col-xs-2" ng-bind="appointment.datetime | date:'MM/dd hh:mm'"></span>
+                    </div>
+                </div>
+                
+                <div ng-if="$ctrl.selectedItem == 'Missed'">
+                    <!-- Missed Appointment -->
+                    <h1>Missed Appointments</h1>
+                </div>
+                
+                <div ng-if="$ctrl.selectedItem == 'OStats'">
+                    <!-- OFfice Statistics -->
+                    <h1>Office Statistics</h1>
+                </div>
+                
+                <div ng-if="$ctrl.selectedItem == 'PStats'">
+                    <!-- Practitioner Statistics -->
+                    <h1>Practitioner Statistics</h1>
+                </div>
             </div>
             <!---->
 
