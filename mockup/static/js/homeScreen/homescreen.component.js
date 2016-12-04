@@ -87,7 +87,14 @@ homescreen.component('homeScreen', {
             return ctrl.selectedItem.name + ' '
                 + ctrl.selectedItem.middle + ' '
                 + ctrl.selectedItem.last;
-        }
+        };
+
+        ctrl.saveNewUser = function () {
+            ctrl.selectedItem.username = ctrl.selectedItem.name.toUpperCase();
+            ctrl.users.push(ctrl.selectedItem);
+            ctrl.showUserDetailScreen = false;
+            ctrl.selectedItem = {};
+        };
 
         ctrl.showPatients = function () {
             ctrl.contentLabel = "Patients";
