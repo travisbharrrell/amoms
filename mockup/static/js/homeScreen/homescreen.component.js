@@ -14,6 +14,7 @@ homescreen.component('homeScreen', {
         ctrl.viewRx = false;
         ctrl.apptStarted = false;
         ctrl.editMode = false; 
+        ctrl.patientFilter = {last: ''};
 
         ctrl.loggedInUser = 'Doctor Rockso';
 

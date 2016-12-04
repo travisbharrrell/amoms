@@ -43,8 +43,9 @@
                         <span class="col-xs-1">Name</span>
                         <span class="col-xs-11">
                             <input type="text"
-                               class="form-control" 
-                               placeholder="Enter patient name.">
+                                   class="form-control" 
+                                   ng-model="$ctrl.patientFilter.last"
+                                   placeholder="Enter patient's last name.">
                         </span>
                     </div>
                     <div class="row content-header">
@@ -56,7 +57,7 @@
                         <span class="col-xs-3">Phone Number (Primary)</span>
                     </div>
                     <div class="row content-row"
-                         ng-repeat="patient in $ctrl.patients | orderBy: 'last'"
+                         ng-repeat="patient in $ctrl.patients | orderBy: 'last' | filter: $ctrl.patientFilter"
                          ng-class-odd="'odd-row'"
                          ng-click="$ctrl.showPatientDetails(patient)">
                          <span class="col-xs-1" ng-bind="patient.fileKey"></span>
