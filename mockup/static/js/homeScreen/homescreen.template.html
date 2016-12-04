@@ -196,10 +196,11 @@
                                     ng-click="$ctrl.saveNewUser()">
                                     Save
                             </button>
-                            <button type="button" class="btn btn-default">Cancel</button>
+                            <button type="button" class="btn btn-default" ng-click="$ctrl.goBackToUsers()">Cancel</button>
                         </span>
                         <span ng-if="!$ctrl.editMode">
-                            <button type="button" class="btn btn-info">Edit User</button>
+                            <button type="button" class="btn btn-info" ng-click="$ctrl.editMode = true">Edit User</button>
+                            <button type="button" class="btn btn-default" ng-click="$ctrl.goBackToUsers()">Return to Users</button>
                         </span>
                     </div>
                     <div class="row event-row">

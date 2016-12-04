@@ -35,6 +35,11 @@ homescreen.component('homeScreen', {
             ctrl.passwordForm = true;
         };
 
+        ctrl.goBackToUsers = function () {
+            ctrl.selectedItem = {};
+            ctrl.showUserDetailScreen = false;
+        };
+
         ctrl.showPatientDetails = function (patient) {
             ctrl.selectedItem = patient;
             ctrl.showPatientDetailScreen = true;
