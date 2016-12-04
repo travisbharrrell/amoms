@@ -8,15 +8,15 @@ homescreen.component('homeScreen', {
         ctrl.passwordForm = false;
         ctrl.showPatientDetailScreen = false;
         ctrl.showUserDetailScreen = false;
-        ctrl.sideBarDisplayValues = [false, false, false, true];
+        ctrl.sideBarDisplayValues = [true, false, false, true];
         ctrl.contentLabel = "";
         ctrl.selectedItem = {};
         ctrl.viewRx = false;
         ctrl.apptStarted = false;
         ctrl.editMode = false; 
         ctrl.patientFilter = {last: ''};
-
-        ctrl.loggedInUser = 'Doctor Rockso';
+        ctrl.loggedInUser = {};
+        ctrl.logInUsername = '';
 
         ctrl.showLogIn = function () {
             return !ctrl.loggedIn && !ctrl.passwordForm;
@@ -27,8 +27,21 @@ homescreen.component('homeScreen', {
         };
 
         ctrl.logIn = function () {
-            ctrl.loggedIn = true;
-            ctrl.passwordForm = false;
+            if (ctrl.logInUsername.toUpperCase() === 'Practitioner'.toUpperCase()) {
+                ctrl.loggedInUser = ctrl.users[1];
+                ctrl.loggedIn = true;
+                ctrl.passwordForm = false;
+            } else if (ctrl.logInUsername.toUpperCase() === 'Receptionist'.toUpperCase()) {
+                ctrl.loggedInUser = ctrl.users[0];
+                ctrl.loggedIn = true;
+                ctrl.passwordForm = false;
+            } else if (ctrl.logInUsername.toUpperCase() === 'Admin'.toUpperCase()) {
+                ctrl.loggedInUser = ctrl.users[2];
+                ctrl.loggedIn = true;
+                ctrl.passwordForm = false;
+            } else {
+                alert('Invalid Password/Username!');
+            }
         };
 
         ctrl.goToPasswordForm = function () {
@@ -524,5 +537,7 @@ homescreen.component('homeScreen', {
                 active: true
             }
         ];
+
+        ctrl.loggedInUser = ctrl.users[1];
     }
 });

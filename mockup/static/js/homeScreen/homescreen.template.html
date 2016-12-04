@@ -3,7 +3,10 @@
             <div class="amoms-label">AMOM SYSTEM</div>
             <div class="input-row input-group">
                 <span class="input-group-addon">User:</span>
-                <input type="text" class="form-control" placeholder="Username">
+                <input type="text" 
+                       class="form-control"
+                       placeholder="Username"
+                       ng-model="$ctrl.logInUsername">
             </div>
             <div class="input-row input-group">
                 <span class="input-group-addon">Password:</span>
@@ -34,6 +37,9 @@
         </div>
 
         <div class="content-area">
+            <div class="nav-row">
+                <span class="logout" ng-bind="$ctrl.loggedInUser.username"></span>
+            </div>
             <!-- Patients View -->
             <div ng-if="$ctrl.showPatients()">
                 <div class="container-fluid content-container" 
