@@ -259,6 +259,137 @@
                             <input class="form-control" type="text" ng-model="$ctrl.selectedItem.address">
                         </span>
                     </div>
+                    <div class="row event-row">
+                        <span class="col-xs-2 patient-label">Privilege Level</span>
+                        <span class="col-xs-4"
+                              ng-bind="$ctrl.selectedItem.privLevel"
+                              ng-if="!$ctrl.editMode">
+                        </span>
+                        <span class="col-xs-4" ng-if="$ctrl.editMode">
+                            <select class="form-control" ng-model="$ctrl.selectedItem.privLevel">
+                                <option value="Receptionist">Receptionist</option>
+                                <option value="Practitioner">Practitioner</option>
+                                <option value="Admin">Admin</option>
+                            </select>
+                        </span>
+
+                        <span ng-if="$ctrl.selectedItem.privLevel === 'Practitioner'">
+                            <span class="col-xs-2 patient-label">Practitioner Type</span>
+                            <span class="col-xs-4"
+                                  ng-bind="$ctrl.selectedItem.practType"
+                                  ng-if="!$ctrl.editMode">
+                            </span>
+                            <span class="col-xs-4" ng-if="$ctrl.editMode">
+                                <select class="form-control" ng-model="$ctrl.selectedItem.practType">
+                                    <option value="Therapist">Therapist</option>
+                                    <option value="Doctor">Doctor</option>
+                                </select>
+                            </span>
+                        </span>
+                    </div>
+                    <div class="row event-row">
+                        <span class="col-xs-3 patient-label">Shifts</span>
+                    </div>
+                    <div class="row event-row">
+                        <span class="col-xs-2">Monday</span>
+                        <span class="col-xs-2">
+                            <input type="checkbox" 
+                                   ng-model="$ctrl.selectedItem.shifts.M.work" 
+                                   ng-disabled="!$ctrl.editMode">
+                            </input>
+                        </span>
+                        <span class="col-xs-2">
+                            <input class="col-xs-4 form-control" 
+                               type="text" 
+                               ng-model="$ctrl.selectedItem.shifts.M.times" 
+                               ng-disabled="!$ctrl.editMode || !$ctrl.selectedItem.shifts.M.work">
+                            </input>
+                        </span>
+                        <span class="col-xs-2">Tuesday</span>
+                        <span class="col-xs-2">
+                            <input type="checkbox" 
+                                   ng-model="$ctrl.selectedItem.shifts.T.work" 
+                                   ng-disabled="!$ctrl.editMode">
+                            </input>
+                        </span>
+                        <span class="col-xs-2">
+                            <input class="col-xs-4 form-control" 
+                               type="text" 
+                               ng-model="$ctrl.selectedItem.shifts.T.times" 
+                               ng-disabled="!$ctrl.editMode || !$ctrl.selectedItem.shifts.T.work">
+                            </input>
+                        </span>
+                        <span class="col-xs-2">Wednesday</span>
+                        <span class="col-xs-2">
+                            <input type="checkbox" 
+                                   ng-model="$ctrl.selectedItem.shifts.W.work" 
+                                   ng-disabled="!$ctrl.editMode">
+                            </input>
+                        </span>
+                        <span class="col-xs-2">
+                            <input class="col-xs-4 form-control" 
+                               type="text" 
+                               ng-model="$ctrl.selectedItem.shifts.W.times" 
+                               ng-disabled="!$ctrl.editMode || !$ctrl.selectedItem.shifts.W.work">
+                            </input>
+                        </span>
+                        <span class="col-xs-2">Thursday</span>
+                        <span class="col-xs-2">
+                            <input type="checkbox" 
+                                   ng-model="$ctrl.selectedItem.shifts.R.work" 
+                                   ng-disabled="!$ctrl.editMode">
+                            </input>
+                        </span>
+                        <span class="col-xs-2">
+                            <input class="col-xs-4 form-control" 
+                               type="text" 
+                               ng-model="$ctrl.selectedItem.shifts.R.times" 
+                               ng-disabled="!$ctrl.editMode || !$ctrl.selectedItem.shifts.R.work">
+                            </input>
+                        </span>
+                        <span class="col-xs-2">Friday</span>
+                        <span class="col-xs-2">
+                            <input type="checkbox" 
+                                   ng-model="$ctrl.selectedItem.shifts.F.work" 
+                                   ng-disabled="!$ctrl.editMode">
+                            </input>
+                        </span>
+                        <span class="col-xs-2">
+                            <input class="col-xs-4 form-control" 
+                               type="text" 
+                               ng-model="$ctrl.selectedItem.shifts.F.times" 
+                               ng-disabled="!$ctrl.editMode || !$ctrl.selectedItem.shifts.F.work">
+                            </input>
+                        </span>
+                        <span class="col-xs-2">Saturday</span>
+                        <span class="col-xs-2">
+                            <input type="checkbox" 
+                                   ng-model="$ctrl.selectedItem.shifts.St.work" 
+                                   ng-disabled="!$ctrl.editMode">
+                            </input>
+                        </span>
+                        <span class="col-xs-2">
+                            <input class="col-xs-4 form-control" 
+                               type="text" 
+                               ng-model="$ctrl.selectedItem.shifts.St.times" 
+                               ng-disabled="!$ctrl.editMode || !$ctrl.selectedItem.shifts.St.work">
+                            </input>
+                        </span>
+                        <span class="col-xs-2">Sunday</span>
+                        <span class="col-xs-2">
+                            <input type="checkbox" 
+                                   ng-model="$ctrl.selectedItem.shifts.Sn.work" 
+                                   ng-disabled="!$ctrl.editMode">
+                            </input>
+                        </span>
+                        <span class="col-xs-2">
+                            <input class="col-xs-4 form-control" 
+                               type="text" 
+                               ng-model="$ctrl.selectedItem.shifts.Sn.times" 
+                               ng-disabled="!$ctrl.editMode || !$ctrl.selectedItem.shifts.Sn.work">
+                            </input>
+                        </span>
+                    </div>
                 </div>
             </div>
             <!---->
