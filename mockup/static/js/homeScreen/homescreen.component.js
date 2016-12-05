@@ -228,20 +228,28 @@ homescreen.component('homeScreen', {
                     displayValues[1] = false;
                     displayValues[2] = false;
                     displayValues[3] = false;
-                }
+                    ctrl.sideBarItems[0].active = true;
+                    ctrl.sideBarItems[1].active = false;
+                    ctrl.sideBarItems[2].active = false;
+                    ctrl.sideBarItems[3].active = false;
+                },
+                active: ctrl.sideBarDisplayValues[0]
             },
             {
                 name: 'Reports', 
                 router: function (displayValues) {
-                    console.log("clicked reports in side bar");
                     setAllDefaults();
                     ctrl.reportType = null;
-                    //ctrl.showReportMain = true;
                     displayValues[0] = false;
                     displayValues[1] = true;
                     displayValues[2] = false;
                     displayValues[3] = false;
-                }
+                    ctrl.sideBarItems[0].active = false;
+                    ctrl.sideBarItems[1].active = true;
+                    ctrl.sideBarItems[2].active = false;
+                    ctrl.sideBarItems[3].active = false;
+                },
+                active: ctrl.sideBarDisplayValues[1]
             },
             {
                 name: 'Schedule', 
@@ -252,7 +260,12 @@ homescreen.component('homeScreen', {
                     displayValues[1] = false;
                     displayValues[2] = true;
                     displayValues[3] = false;
-                }
+                    ctrl.sideBarItems[0].active = false;
+                    ctrl.sideBarItems[1].active = false;
+                    ctrl.sideBarItems[2].active = true;
+                    ctrl.sideBarItems[3].active = false;
+                },
+                active: false
             },
             {
                 name: 'Admin', 
@@ -262,7 +275,12 @@ homescreen.component('homeScreen', {
                     displayValues[1] = false;
                     displayValues[2] = false;
                     displayValues[3] = true;
-                }
+                    ctrl.sideBarItems[0].active = false;
+                    ctrl.sideBarItems[1].active = false;
+                    ctrl.sideBarItems[2].active = false;
+                    ctrl.sideBarItems[3].active = true;
+                },
+                active: false
             }
         ];
 

@@ -29,9 +29,9 @@
         <div class="sidebar">
             <div class="sidebar-item"
                  ng-repeat="item in $ctrl.sideBarItems"
-                 ng-class="{'sidebar-item-selected' : item.active}">
-                <span ng-bind="item.name"
-                      ng-click="item.router($ctrl.sideBarDisplayValues)">
+                 ng-class="{'sidebar-item-selected' : item.active}"
+                 ng-click="item.router($ctrl.sideBarDisplayValues)">
+                <span ng-bind="item.name">
                 </span>
             </div>
         </div>

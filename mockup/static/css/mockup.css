@@ -33,7 +33,7 @@
 
 .sidebar-item:hover,
 .sidebar-item-selected {
-    background-color: cornflowerblue;
+    background-color: lightblue;
     cursor: pointer;
 }
 
@@ -85,6 +85,11 @@
     border-style:solid;
     font-size:14px;
     text-align:center;
+}
+
+.schedule-appointment-entry:hover {
+    cursor: pointer;
+    background-color: #85b8c9
 }
 
 .appointment-time-9 {
