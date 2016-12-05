@@ -279,11 +279,280 @@
                     </div>
                 </div>
             </div>
-            <!---->
+            <!-- end patient -->
 
             <!-- Schedule View -->
             <div ng-if="$ctrl.showSchedule()">
-                SCHEDULE
+                <div class="content-container container-fluid" 
+                     ng-if="$ctrl.scheduleView == 'main'" 
+                     style="font-size:18px">
+                     
+                    <div class="row content-header">
+                        <span class="col-xs-2 patient-label">Time</span>
+                        <span class="col-xs-2 patient-label">Nutrition Guy</span>
+                        <span class="col-xs-2 patient-label">Doctor One</span>
+                        <span class="col-xs-2 patient-label">Therapist</span>
+                    </div>
+                    <div class="row event-row"
+                         ng-class-odd="'odd-row'">
+                         <span class="col-xs-1" >8:00</span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                    </div>
+                    <div class="row event-row"
+                         ng-class-odd="'even-row'">
+                         <span class="col-xs-1" >9:00</span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                    </div>
+                    <div class="row event-row"
+                         ng-class-odd="'odd-row'">
+                         <span class="col-xs-2" >10:00</span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                    </div>
+                    <div class="row event-row"
+                         ng-class-odd="'even-row'">
+                         <span class="col-xs-2" >11:00</span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                    </div>
+                    <div class="row event-row"
+                         ng-class-odd="'odd-row'">
+                         <span class="col-xs-2" >12:00</span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                    </div>
+                    <div class="row event-row"
+                         ng-class-odd="'even-row'">
+                         <span class="col-xs-2" >13:00</span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                    </div>
+                    <div class="row event-row"
+                         ng-class-odd="'odd-row'">
+                         <span class="col-xs-2" >14:00</span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                    </div>
+                    <div class="row event-row"
+                         ng-class-odd="'even-row'">
+                         <span class="col-xs-2" >15:00</span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                    </div>
+                    <div class="row event-row"
+                         ng-class-odd="'odd-row'">
+                         <span class="col-xs-2" >16:00</span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                    </div>
+                    <div class="row event-row"
+                         ng-class-odd="'even-row'">
+                         <span class="col-xs-2" >17:00</span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                    </div>
+                    <div class="row event-row"
+                         ng-class-odd="'odd-row'">
+                         <span class="col-xs-2" >18:00</span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                         <span class="col-xs-2" ></span>
+                    </div>
+                    
+                    <div class="schedule-appointment-entry appointment-time-10 appointment-col-1"
+                         ng-click="$ctrl.viewAppointment = 'Osborn Kramer'; $ctrl.scheduleView = 'appointment'">
+                       Osborn Kramer
+                    </div>
+                    <div class="schedule-appointment-entry appointment-time-11 appointment-col-1"
+                    ng-click="$ctrl.viewAppointment = 'Tracey Ward'; $ctrl.scheduleView = 'appointment'">
+                       Tracey Ward
+                    </div>
+                    <div class="schedule-appointment-entry appointment-time-13 appointment-col-1"
+                    ng-click="$ctrl.viewAppointment = 'Tasha Ford'; $ctrl.scheduleView = 'appointment'">
+                       Tasha Ford
+                    </div>
+                    <div class="schedule-appointment-entry appointment-time-14 appointment-col-1"
+                    ng-click="$ctrl.viewAppointment = 'Rene Bartlett'; $ctrl.scheduleView = 'appointment'">
+                       Rene Bartlett
+                    </div>
+                    <div class="schedule-appointment-entry appointment-time-15 appointment-col-1"
+                    ng-click="$ctrl.viewAppointment = 'Lacey Franco'; $ctrl.scheduleView = 'appointment'">
+                       Lacey Franco
+                    </div>
+                    
+                    <div class="schedule-appointment-entry appointment-time-11 appointment-col-2"
+                    ng-click="$ctrl.viewAppointment = 'Laurel Hale'; $ctrl.scheduleView = 'appointment'">
+                       Laurel Hale
+                    </div>
+                    <div class="schedule-appointment-entry appointment-time-14 appointment-col-2"
+                    ng-click="$ctrl.viewAppointment = 'Lee Tran'; $ctrl.scheduleView = 'appointment'">
+                       Lee Tran
+                    </div>
+                    
+                    <div class="schedule-appointment-entry appointment-time-9 appointment-col-3"
+                    ng-click="$ctrl.viewAppointment = 'Lelia Ball'; $ctrl.scheduleView = 'appointment'">
+                       Lelia Ball
+                    </div>
+                    <div class="schedule-appointment-entry appointment-time-15 appointment-col-3"
+                    ng-click="$ctrl.viewAppointment = 'Kellie Moreno'; $ctrl.scheduleView = 'appointment'">
+                       Kellie Moreno
+                    </div>
+                </div>
+                
+                <div class="btn-group" 
+                     ng-if="$ctrl.scheduleView == 'main'">
+                    <button type="button" class="btn btn-default"
+                            ng-click="$ctrl.scheduleView = 'newAppointment'; $ctrl.newAppointmentForm=0;">New Appointment</button>
+                </div>
+                
+                <div class="content-container container-fluid"
+                     ng-if="$ctrl.scheduleView == 'appointment'"
+                     ng-repeat="appointment in $ctrl.appointments | filter:{patient:$ctrl.viewAppointment}">
+                     
+                    <span class="content-container-label">{{appointment.patient}} - Appointment Details</span>
+                    <div>
+                        <div class="row">
+                            <span class="col-xs-4 patient-label" ng-bind="appointment.datetime | date:'MMMM d, yyyy @h:mm a' "></span>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <span class="col-xs-1 patient-label">Doctor: </span>
+                            <span class="col-xs-4" ng-bind="appointment.practitioner"></span>
+                        </div>
+                        <br/>
+                        <div class="btn-group event-row">
+                            <button type="button" class="btn btn-default"
+                                    ng-click="$ctrl.scheduleView = 'main'">
+                                Cancel
+                            </button>
+                            <button type="button" 
+                                    class="btn btn-default"
+                                    ng-if="appointment.state != 'I'"
+                                    ng-click="appointment.state='I'; $ctrl.scheduleView = 'main'">
+                                Check In
+                            </button>
+                            <button type="button" 
+                                    class="btn btn-default"
+                                    ng-if="appointment.state == 'I'"
+                                    ng-click="appointment.state='O'; $ctrl.scheduleView = 'main'">
+                                Check Out
+                            </button>
+                            <button type="button" 
+                                    class="btn btn-default"
+                                    ng-click="appointment.state='M'; $ctrl.scheduleView = 'main'">
+                                Missed
+                            </button>                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div ng-if="$ctrl.scheduleView == 'newAppointment'" >
+                     
+                    <div class="container-fluid content-container" 
+                         ng-if="$ctrl.newAppointmentForm == 0">
+                        <span class="content-container-label">Select Patient</span>
+                        <div class="row" style="margin-bottom: 10px;">
+                            <span class="col-xs-1">Name</span>
+                            <span class="col-xs-8">
+                                <input type="text"
+                                       class="form-control" 
+                                       ng-model="$ctrl.patientFilter.last"
+                                       placeholder="Enter patient's last name.">
+                            </span>
+                            <span class="col-xs-3">
+                                <button class="btn btn-info" type="button" ng-click="$ctrl.showPatientDetails(null)">New Patient</button>
+                            </span> 
+                        </div>
+                        <div class="row content-header">
+                            <span class="col-xs-1">File Key</span>
+                            <span class="col-xs-1">Last</span>
+                            <span class="col-xs-1">First</span>
+                            <span class="col-xs-1">Middle</span>
+                            <span class="col-xs-4">Address</span>
+                            <span class="col-xs-3">Phone Number (Primary)</span>
+                        </div>
+                        <div class="row content-row"
+                             ng-repeat="patient in $ctrl.patients | orderBy: 'last' | filter: $ctrl.patientFilter"
+                             ng-class-odd="'odd-row'"
+                             ng-click="$ctrl.newAppointmentForm = 1; $ctrl.newAppointmentPatient = patient;">
+                             <span class="col-xs-1" ng-bind="patient.fileKey"></span>
+                             <span class="col-xs-1" ng-bind="patient.last"></span>
+                             <span class="col-xs-1" ng-bind="patient.name"></span>
+                             <span class="col-xs-1" ng-bind="patient.middle"></span>
+                             <span class="col-xs-4" ng-bind="patient.address"></span>
+                             <span class="col-xs-3" ng-bind="patient.phone"></span>
+                        </div>
+                    </div>
+                     
+                    <div class="container-fluid content-container" 
+                         ng-if="$ctrl.newAppointmentForm == 1">
+                        <span class="content-container-label">{{$ctrl.newAppointmentPatient.name}} {{$ctrl.newAppointmentPatient.last}} - New Appointment</span>
+                        
+                        <div class="row event-row">
+                            <span class="col-xs-1 patient-label">Date</span>
+                            <span class="col-xs-4"><input type="text" id="newAppointmentDate"></input></span>
+                            <script>$('#newAppointmentDate').datepicker({});</script>
+                        </div>
+                        
+                        <div class="row event-row">
+                            <span class="col-xs-1 patient-label">Time</span>
+                            <span class="col-xs-4">
+                                <select>
+                                    <option ng-repeat="time in [9,10,11,12,13,14,15,16,17,18]" >
+                                        {{time}}
+                                    </option>
+                                </select>
+                            </span>
+                        </div>
+                        
+                        <div class="row event-row">
+                            <span class="col-xs-1 patient-label">Practitioner</span>
+                            <span class="col-xs-4">
+                                <select>
+                                    <option ng-repeat="doctor in $ctrl.users | orderBy:'name' | filter:{privLevel:'Practitioner'}">
+                                        {{doctor.name}}
+                                    </option>
+                                </select>
+                            </span>
+                        </div>
+                        
+                        <div class="row event-row">
+                            <span class="col-xs-1 patient-label">Complaint</span>
+                        </div>
+                        <div class="row event-row">
+                            <span class="col-xs-4">
+                                <textarea>
+                                </textarea>
+                            </span>
+                        </div>
+                        
+                        <div class="row event-row">
+                            <button type="button" 
+                                    class="btn btn-default"
+                                    ng-click="$ctrl.newAppointmentForm = 0; $ctrl.scheduleView = 'main'">
+                                Save
+                            </button>
+                            <button type="button" 
+                                    class="btn btn-default"
+                                    ng-click="$ctrl.newAppointmentForm = 0; $ctrl.scheduleView = 'main'">
+                                Cancel
+                            </button>
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
             <!---->
 
