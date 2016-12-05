@@ -4,7 +4,7 @@ homescreen.component('homeScreen', {
     templateUrl: '/static/js/homeScreen/homescreen.template.html',
     controller: function () {
         var ctrl = this;
-        ctrl.loggedIn = true;
+        ctrl.loggedIn = false;
         ctrl.passwordForm = false;
         ctrl.showPatientDetailScreen = false;
         ctrl.showUserDetailScreen = false;
@@ -927,7 +927,5 @@ homescreen.component('homeScreen', {
                 "free": 3
             }
         ];
-
-        ctrl.loggedInUser = ctrl.users[1];
     }
 });
