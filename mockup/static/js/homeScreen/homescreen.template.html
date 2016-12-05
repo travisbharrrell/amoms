@@ -286,7 +286,18 @@
                 <div class="content-container container-fluid" 
                      ng-if="$ctrl.scheduleView == 'main'" 
                      style="font-size:18px">
-                     
+
+                    <div class="row event-row">
+                        <span class="col-xs-12" style="text-align:center">
+                            < 12/04/2016
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" class="datepicker" value="12/05/2016"/>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            12/06/2016 >
+                        </span>
+                        <script>$('.datepicker').datepicker({});</script>
+                    </div>
+                    
                     <div class="row content-header">
                         <span class="col-xs-2 patient-label">Time</span>
                         <span class="col-xs-2 patient-label">Nutrition Guy</span>
@@ -502,8 +513,8 @@
                         
                         <div class="row event-row">
                             <span class="col-xs-1 patient-label">Date</span>
-                            <span class="col-xs-4"><input type="text" id="newAppointmentDate"></input></span>
-                            <script>$('#newAppointmentDate').datepicker({});</script>
+                            <span class="col-xs-4"><input class="datepicker" type="text" id="newAppointmentDate"></input></span>
+                            <script>$('.datepicker').datepicker({});</script>
                         </div>
                         
                         <div class="row event-row">
@@ -575,12 +586,12 @@
                         <button type="button" 
                                 class="btn btn-default"
                                 ng-click="$ctrl.reportType = 'OStats'">
-                            Office Stats
+                            Office Patient Visits
                         </button>
                         <button type="button" 
                                 class="btn btn-default"
                                 ng-click="$ctrl.reportType = 'PStats'">
-                            Practitioner Stats
+                            Practitioner Patient Visits
                         </button>
                     </div>
                 </div>
@@ -604,7 +615,8 @@
                     </div>
                 </div>
                 
-                <div class="content-container container-fluid" ng-if="$ctrl.reportType === 'Missed'">
+                <div class="content-container container-fluid"
+                     ng-if="$ctrl.reportType === 'Missed'">
                     <!-- Missed Appointment -->
                     <span class="content-container-label">Missed Appointments</span>
                     <div class="row content-header">
@@ -621,14 +633,74 @@
                     </div>                    
                 </div>
                 
-                <div ng-if="$ctrl.reportType === 'OStats'">
+                <div ng-if="$ctrl.reportType === 'OStats'"
+                     class="content-container container-fluid">
                     <!-- OFfice Statistics -->
-                    <h1>Office Statistics</h1>
+                    <span class="content-container-label">Office Patient Visits</span>
+                    <div class="row event-row">
+                        <span class="col-xs-12" style="text-align:center">
+                            <span class="patient-label" >Month</span>
+                            <input type="text" class="datepicker" value="12/2016" />
+                            <script>$('.datepicker').datepicker({format: "mm/yyyy",startView: 1, minViewMode: 1, showButtonPanel: true});</script>
+                        </span>
+                    </div>
+                    <div class="row content-header">
+                        <span class="col-xs-2 patient-label">Practitioner</span>
+                        <span class="col-xs-2 patient-label">Patients Seen</span>
+                        <span class="col-xs-2 patient-label">New Patients</span>
+                        <span class="col-xs-2 patient-label">Plan Patients</span>
+                        <span class="col-xs-2 patient-label">No Shows</span>
+                        <span class="col-xs-2 patient-label">Freebies</span>
+                    </div>
+                    <div class="row event-row"
+                         ng-class-odd="'odd-row'"
+                         ng-repeat="visit in $ctrl.officeVisits | orderBy: 'practitioner'">
+                        <span class="col-xs-2 patient-label" ng-bind="visit.practitioner"></span>
+                        <span class="col-xs-2 patient-label" ng-bind="visit.seen"></span>
+                        <span class="col-xs-2 patient-label" ng-bind="visit.new"></span>
+                        <span class="col-xs-2 patient-label" ng-bind="visit.plan"></span>
+                        <span class="col-xs-2 patient-label" ng-bind="visit.noshow"></span>
+                        <span class="col-xs-2 patient-label" ng-bind="visit.free"></span>
+                    </div>
                 </div>
                 
-                <div ng-if="$ctrl.reportType === 'PStats'">
+                <div ng-if="$ctrl.reportType === 'PStats'"
+                     class="content-container container-fluid">
                     <!-- Practitioner Statistics -->
-                    <h1>Practitioner Statistics</h1>
+                    <span class="content-container-label">Practitioner Patient Visits</span>
+                    <div class="row event-row">
+                        <span class="col-xs-6" style="text-align:center">
+                            <span class="patient-label" >Practitioner</span>
+                            <select>
+                                <option ng-repeat="doctor in $ctrl.users | orderBy:'name' | filter:{privLevel:'Practitioner'}">
+                                    {{doctor.name}}
+                                </option>
+                            </select>
+                        </span>
+                        <span class="col-xs-6" style="text-align:center">
+                            <span class="patient-label" >Month</span>
+                            <input type="text" class="datepicker" value="12/2016" />
+                            <script>$('.datepicker').datepicker({format: "mm/yyyy",startView: 1, minViewMode: 1, showButtonPanel: true});</script>
+                        </span>
+                    </div>                    
+                    <div class="row content-header">
+                        <span class="col-xs-2 patient-label">Date</span>
+                        <span class="col-xs-2 patient-label">Patients Seen</span>
+                        <span class="col-xs-2 patient-label">New Patients</span>
+                        <span class="col-xs-2 patient-label">Plan Patients</span>
+                        <span class="col-xs-2 patient-label">No Shows</span>
+                        <span class="col-xs-2 patient-label">Freebies</span>
+                    </div>
+                    <div class="row event-row"
+                         ng-class-odd="'odd-row'"
+                         ng-repeat="visit in $ctrl.practitionerVisits | orderBy: 'date'">
+                        <span class="col-xs-2 patient-label" ng-bind="visit.date"></span>
+                        <span class="col-xs-2 patient-label" ng-bind="visit.seen"></span>
+                        <span class="col-xs-2 patient-label" ng-bind="visit.new"></span>
+                        <span class="col-xs-2 patient-label" ng-bind="visit.plan"></span>
+                        <span class="col-xs-2 patient-label" ng-bind="visit.noshow"></span>
+                        <span class="col-xs-2 patient-label" ng-bind="visit.free"></span>
+                    </div>
                 </div>
             </div>
             <!---->

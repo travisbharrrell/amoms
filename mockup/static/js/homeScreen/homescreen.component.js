@@ -852,6 +852,81 @@ homescreen.component('homeScreen', {
                 "pract": "Dr Rowe"
             }
         ];
+        
+        ctrl.officeVisits = [
+            {
+                "practitioner": "Nutritionist Guy",
+                "seen": 150,
+                "new": 15,
+                "plan": 125,
+                "noshow": 4,
+                "free": 10
+            },
+            {
+                "practitioner": "Doctor One",
+                "seen": 120,
+                "new": 12,
+                "plan": 95,
+                "noshow": 5,
+                "free": 6
+            },
+            {
+                "practitioner": "Therapist",
+                "seen": 90,
+                "new": 20,
+                "plan": 70,
+                "noshow": 10,
+                "free": 12
+            }
+        ];
+        
+        ctrl.practitionerVisits = [
+            {
+                "practitioner": "Nutritionist Guy",
+                "date": "2016-12-01",
+                "seen": 5,
+                "new": 1,
+                "plan": 4,
+                "noshow": 0,
+                "free": 0
+            },
+            {
+                "practitioner": "Nutritionist Guy",
+                "date": "2016-12-02",
+                "seen": 5,
+                "new": 0,
+                "plan": 5,
+                "noshow": 0,
+                "free": 0
+            },
+            {
+                "practitioner": "Nutritionist Guy",
+                "date": "2016-12-03",
+                "seen": 4,
+                "new": 0,
+                "plan": 3,
+                "noshow": 1,
+                "free": 1
+            },
+            {
+                "practitioner": "Nutritionist Guy",
+                "date": "2016-12-04",
+                "seen": 6,
+                "new": 1,
+                "plan": 4,
+                "noshow": 0,
+                "free": 1
+            },
+            {
+                "practitioner": "Nutritionist Guy",
+                "date": "2016-12-05",
+                "seen": 3,
+                "new": 0,
+                "plan": 0,
+                "noshow": 0,
+                "free": 3
+            }
+        ];
 
         ctrl.loggedInUser = ctrl.users[1];
     }
