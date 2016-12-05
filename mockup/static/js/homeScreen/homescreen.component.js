@@ -8,10 +8,11 @@ homescreen.component('homeScreen', {
         ctrl.passwordForm = false;
         ctrl.showPatientDetailScreen = false;
         ctrl.showUserDetailScreen = false;
-        ctrl.sideBarDisplayValues = [true, false, false, true];
+        ctrl.showRxDetailScreen = false;
+        ctrl.sideBarDisplayValues = [true, false, false, false];
         ctrl.contentLabel = "";
-        ctrl.selectedItem = null; //{};
-        ctrl.viewRx = false;
+        ctrl.selectedItem = {};
+        ctrl.showRx = false;
         ctrl.apptStarted = false;
         ctrl.editMode = false; 
         ctrl.patientFilter = {last: ''};
@@ -55,8 +56,32 @@ homescreen.component('homeScreen', {
         };
 
         ctrl.showPatientDetails = function (patient) {
-            ctrl.selectedItem = patient;
+            if (!patient) {
+                ctrl.selectedItem = {
+                    "name": '',
+                    "middle": "",
+                    "last": "",
+                    "dob": "",
+                    "sex": "",
+                    "email": "",
+                    "phone": "",
+                    "address": "",
+                    "occupation": "",
+                    "recommendation": "",
+                    "married": "",
+                    "fileKey": 0,
+                    "numKids": 0
+                };
+                ctrl.editMode = true;    
+            } else {
+                ctrl.selectedItem = patient;
+            }
             ctrl.showPatientDetailScreen = true;
+        };
+
+        ctrl.showRxHistory = function () {
+            ctrl.showRx = true;
+            ctrl.showPatientDetailScreen = false;
         };
 
         ctrl.showUserDetail = function (user) {
@@ -92,6 +117,53 @@ homescreen.component('homeScreen', {
             }
 
             ctrl.showUserDetailScreen = true;
+        };
+
+        ctrl.savePatientDetails = function () {
+            if (ctrl.editMode) {
+                var existingPatient = ctrl.patients.some(function (patient) {
+                    return patient.fileKey === ctrl.selectedItem.fileKey;
+                });
+
+                if (!existingPatient) {
+                    ctrl.patients.push(ctrl.selectedItem);
+                }
+            }
+
+            ctrl.editMode = !ctrl.editMode;
+        };
+
+        ctrl.showRxDetail = function (rx) {
+            if (!rx) {
+                ctrl.selectedItem = {
+                    date: new Date(),
+                    treatment: "",
+                    pract: ctrl.loggedInUser.name
+                };
+                ctrl.editMode = true;
+            } else {
+                ctrl.selectedItem = rx;
+            }
+
+            ctrl.showRx = false;
+            ctrl.showRxDetailScreen = true;
+        };
+
+        ctrl.goToPatients = function () {
+            ctrl.showRx = false;
+            ctrl.showPatientDetailScreen = false;
+            ctrl.editMode = false;
+        };
+
+        ctrl.goBackToRx = function () {
+            ctrl.showRxDetailScreen = false;
+            ctrl.showRx = true;
+            ctrl.editMode = false;
+        };
+
+        ctrl.saveRx = function () {
+            ctrl.prescriptions.push(ctrl.selectedItem);
+            ctrl.goBackToRx();
         };
 
         ctrl.getApptBtnLabel = function () {
@@ -136,7 +208,7 @@ homescreen.component('homeScreen', {
             {
                 name: 'Patients', 
                 router: function (displayValues) {
-                    ctrl.selectedItem = null;
+                    ctrl.selectedItem = {};
                     displayValues[0] = true;
                     displayValues[1] = false;
                     displayValues[2] = false;
@@ -146,7 +218,7 @@ homescreen.component('homeScreen', {
             {
                 name: 'Reports', 
                 router: function (displayValues) {
-                    ctrl.selectedItem = null;
+                    ctrl.selectedItem = {};
                     displayValues[0] = false;
                     displayValues[1] = true;
                     displayValues[2] = false;
@@ -156,7 +228,7 @@ homescreen.component('homeScreen', {
             {
                 name: 'Schedule', 
                 router: function (displayValues) {
-                    ctrl.selectedItem = null;
+                    ctrl.selectedItem = {};
                     displayValues[0] = false;
                     displayValues[1] = false;
                     displayValues[2] = true;
@@ -166,7 +238,7 @@ homescreen.component('homeScreen', {
             {
                 name: 'Admin', 
                 router: function (displayValues) {
-                    ctrl.selectedItem = null;
+                    ctrl.selectedItem = {};
                     displayValues[0] = false;
                     displayValues[1] = false;
                     displayValues[2] = false;
@@ -666,6 +738,44 @@ homescreen.component('homeScreen', {
                 apptLength: null,
                 phone: '123-345-1234',
                 active: true
+            }
+        ];
+
+        ctrl.prescriptions = [
+            {
+                "date": "01 June, 2007",
+                "treatment": "Dolore ex cillum nisi Lorem eu proident est dolore adipisicing ut adipisicing.",
+                "pract": "Dr Brooks"
+            },
+            {
+                "date": "08 October, 1999",
+                "treatment": "Culpa ea veniam adipisicing ut nulla est aute consectetur dolor duis eiusmod irure esse voluptate.",
+                "pract": "Dr Petty"
+            },
+            {
+                "date": "20 December, 2004",
+                "treatment": "Lorem culpa aliquip quis cillum dolore consequat incididunt et amet exercitation do tempor.",
+                "pract": "Dr Hopper"
+            },
+            {
+                "date": "25 February, 2000",
+                "treatment": "Sit consequat qui cupidatat sint.",
+                "pract": "Dr Hensley"
+            },
+            {
+                "date": "27 July, 2000",
+                "treatment": "Deserunt reprehenderit sunt laborum tempor est amet dolore pariatur reprehenderit nisi anim tempor.",
+                "pract": "Dr Lindsey"
+            },
+            {
+                "date": "26 December, 2002",
+                "treatment": "Fugiat esse sunt culpa proident.",
+                "pract": "Dr Delgado"
+            },
+            {
+                "date": "12 April, 2001",
+                "treatment": "Elit est qui adipisicing ea non cillum magna eiusmod sint.",
+                "pract": "Dr Rowe"
             }
         ];
 

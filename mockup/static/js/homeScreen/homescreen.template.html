@@ -43,16 +43,19 @@
             <!-- Patients View -->
             <div ng-if="$ctrl.showPatients()">
                 <div class="container-fluid content-container" 
-                     ng-if="!$ctrl.showPatientDetailScreen">
+                     ng-if="!$ctrl.showPatientDetailScreen && !$ctrl.showRx && !$ctrl.showRxDetailScreen">
                     <span class="content-container-label" ng-bind="$ctrl.contentLabel"></span>
                     <div class="row" style="margin-bottom: 10px;">
                         <span class="col-xs-1">Name</span>
-                        <span class="col-xs-11">
+                        <span class="col-xs-8">
                             <input type="text"
                                    class="form-control" 
                                    ng-model="$ctrl.patientFilter.last"
                                    placeholder="Enter patient's last name.">
                         </span>
+                        <span class="col-xs-3">
+                            <button class="btn btn-info" type="button" ng-click="$ctrl.showPatientDetails(null)">New Patient</button>
+                        </span> 
                     </div>
                     <div class="row content-header">
                         <span class="col-xs-1">File Key</span>
@@ -81,10 +84,15 @@
                         Details for - {{$ctrl.selectedItem.name + ' ' + $ctrl.selectedItem.last}}
                     </span>
                     <div class="btn-row">
-                        <button type="button" class="btn btn-info">Save</button>
-                        <button type="button" class="btn btn-default">Cancel</button>
                         <button type="button" 
-                                class="btn btn-default">
+                                class="btn btn-info"
+                                ng-click="$ctrl.savePatientDetails()">
+                            {{$ctrl.editMode ? 'Save' : 'Edit Patient'}}
+                        </button>
+                        <button type="button" class="btn btn-default" ng-click="$ctrl.goToPatients()">Cancel</button>
+                        <button type="button" 
+                                class="btn btn-default"
+                                ng-click="$ctrl.showRxHistory()">
                                 View Prescription History
                         </button>
                         <button type="button" 
@@ -98,31 +106,105 @@
                         </button>
                     </div>
                     <div class="row">
-                        <span class="col-xs-2 patient-label">Name</span>
-                        <span class="col-xs-4" ng-bind="$ctrl.getPatientName()"></span>
+                        <span class="col-xs-2 patient-label">First Name</span>
+                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.name" ng-if="!$ctrl.editMode"></span>
+                        <span class="col-xs-4" ng-if="$ctrl.editMode">
+                            <input type="text"
+                                class="form-control" 
+                                ng-model="$ctrl.selectedItem.name" 
+                                ng-if="$ctrl.editMode">
+                        </span>  
+                        <span class="col-xs-2 patient-label">Last Name</span>
+                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.last" ng-if="!$ctrl.editMode"></span>
+                        <span class="col-xs-4" ng-if="$ctrl.editMode">
+                            <input type="text"
+                                class="form-control" 
+                                ng-model="$ctrl.selectedItem.last" 
+                                ng-if="$ctrl.editMode">
+                        </span>  
                         <span class="col-xs-2 patient-label">Date of Birth</span>
-                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.dob"></span>
+                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.dob" ng-if="!$ctrl.editMode"></span>
+                        <span class="col-xs-4" ng-if="$ctrl.editMode">
+                            <input type="text"
+                                class="form-control" 
+                                ng-model="$ctrl.selectedItem.dob" 
+                                ng-if="$ctrl.editMode">
+                        </span>       
                         <span class="col-xs-2 patient-label">Sex</span>
-                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.sex"></span>
+                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.sex" ng-if="!$ctrl.editMode"></span>
+                        <span class="col-xs-4" ng-if="$ctrl.editMode">
+                            <input type="text"
+                                class="form-control" 
+                                ng-model="$ctrl.selectedItem.sex" 
+                                ng-if="$ctrl.editMode">
+                        </span>  
                         <span class="col-xs-2 patient-label">Email</span>
-                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.email"></span>
+                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.email" ng-if="!$ctrl.editMode"></span>
+                        <span class="col-xs-4" ng-if="$ctrl.editMode">
+                            <input type="text"
+                                class="form-control" 
+                                ng-model="$ctrl.selectedItem.email" 
+                                ng-if="$ctrl.editMode">
+                        </span>       
                         <span class="col-xs-2 patient-label">Phone</span>
-                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.phone"></span>
+                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.phone" ng-if="!$ctrl.editMode"></span>
+                        <span class="col-xs-4" ng-if="$ctrl.editMode">
+                            <input type="text"
+                                class="form-control" 
+                                ng-model="$ctrl.selectedItem.phone" 
+                                ng-if="$ctrl.editMode">
+                        </span>       
                         <span class="col-xs-2 patient-label">Address</span>
-                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.address"></span>
+                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.address" ng-if="!$ctrl.editMode"></span>
+                        <span class="col-xs-4" ng-if="$ctrl.editMode">
+                            <input type="text"
+                                class="form-control" 
+                                ng-model="$ctrl.selectedItem.address" 
+                                ng-if="$ctrl.editMode">
+                        </span>       
                         <span class="col-xs-2 patient-label">Occupation</span>
-                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.occupation"></span>
+                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.occupation" ng-if="!$ctrl.editMode"></span>
+                        <span class="col-xs-4" ng-if="$ctrl.editMode">
+                            <input type="text"
+                                class="form-control" 
+                                ng-model="$ctrl.selectedItem.occupation" 
+                                ng-if="$ctrl.editMode">
+                        </span>       
                         <span class="col-xs-2 patient-label">Recommendation</span>
-                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.recommendation"></span>
+                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.recommendation" ng-if="!$ctrl.editMode"></span>
+                        <span class="col-xs-4" ng-if="$ctrl.editMode">
+                            <input type="text"
+                                class="form-control" 
+                                ng-model="$ctrl.selectedItem.recommendation" 
+                                ng-if="$ctrl.editMode">
+                        </span>        
                         <span class="col-xs-2 patient-label">Married</span>
-                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.married"></span>
+                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.married" ng-if="!$ctrl.editMode"></span>
+                        <span class="col-xs-4" ng-if="$ctrl.editMode">
+                            <input type="text"
+                                class="form-control" 
+                                ng-model="$ctrl.selectedItem.married" 
+                                ng-if="$ctrl.editMode">
+                        </span>       
                         <span class="col-xs-2 patient-label"># Kids</span>
-                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.numKids"></span>
+                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.numKids" ng-if="!$ctrl.editMode"></span>
+                        <span class="col-xs-4" ng-if="$ctrl.editMode">
+                            <input type="text"
+                                class="form-control" 
+                                ng-model="$ctrl.selectedItem.numKids" 
+                                ng-if="$ctrl.editMode">
+                        </span>       
                         <span class="col-xs-2 patient-label">File Key</span>
-                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.fileKey"></span>
+                        <span class="col-xs-4" ng-bind="$ctrl.selectedItem.fileKey" ng-if="!$ctrl.editMode"></span>
+                        <span class="col-xs-4" ng-if="$ctrl.editMode">
+                            <input type="text"
+                                class="form-control" 
+                                ng-model="$ctrl.selectedItem.fileKey" 
+                                ng-if="$ctrl.editMode">
+                        </span>       
                     </div>
                 </div>
-                <div class="container-fluid content-container" ng-if="$ctrl.showPatientDetailScreen">
+                <div class="container-fluid content-container" ng-if="$ctrl.showPatientDetailScreen && !$ctrl.editMode">
                     <span class="content-container-label">Medical History</span>
                     <div class="row content-header">
                         <span class="col-xs-2">Date</span>
@@ -136,7 +218,7 @@
                     </div>
                 </div>
 
-                <div class="container-fluid content-container" ng-if="$ctrl.showPatientDetailScreen">
+                <div class="container-fluid content-container" ng-if="$ctrl.showPatientDetailScreen && !$ctrl.editMode">
                     <span class="content-container-label">Medical Notes for Patient</span>
                     <div class="row content-header">
                         <span class="col-xs-2">Date</span>
@@ -149,6 +231,51 @@
                         <span class="col-xs-2" ng-bind="note.date"></span>
                         <span class="col-xs-2" ng-bind="note.recordingDr"></span>
                         <span class="col-xs-8" ng-bind="note.note"></span>
+                    </div>
+                </div>
+
+                <div class="container-fluid content-container" ng-if="$ctrl.showRx">
+                    <span class="content-container-label">Prescription History</span>
+                    <div class="btn-row">
+                        <button class="btn btn-info" ng-click="$ctrl.showRxDetail(null)">Write New Rx</button>
+                        <button class="btn btn-default" ng-click="$ctrl.goToPatients()">Cancel</button>
+                    </div>
+                    <div class="row content-header">
+                        <span class="col-xs-2">Date</span>
+                        <span class="col-xs-7">Treatment</span>
+                        <span class="col-xs-3">Prescribing Practitioner</span>
+                    </div>
+                    <div class="row content-row"
+                         ng-class-odd="'odd-row'"
+                         ng-repeat="rx in $ctrl.prescriptions | orderBy: 'date'"
+                         ng-click="$ctrl.showRxDetail(rx)">
+                        <span class="col-xs-2" ng-bind="rx.date"></span>
+                        <span class="col-xs-7" ng-bind="rx.treatment">Treatment</span>
+                        <span class="col-xs-3" ng-bind="rx.pract">Prescribing Practitioner</span>
+                    </div>
+                </div>
+
+                <div class="container-fluid content-container" ng-if="$ctrl.showRxDetailScreen">
+                    <span class="content-container-label">Prescription Details</span>
+                    <div class="btn-row">
+                        <button class="btn btn-info" ng-click="$ctrl.saveRx()">Save</button>
+                        <button class="btn btn-default" ng-click="$ctrl.goBackToRx()">Cancel</button>
+                    </div>
+                    <div class="row">
+                        <span class="patient-label col-xs-2">Date:</span>
+                        <span class="col-xs-3" ng-bind="$ctrl.selectedItem.date"></span>
+                    </div>
+                    <div class="row">
+                        <span class="patient-label col-xs-2">Practitioner:</span>
+                        <span class="col-xs-3" ng-bind="$ctrl.selectedItem.pract"></span> 
+                    </div>
+                    <div class="row">
+                        <span class="patient-label col-xs-2">Treatment:</span>
+                        <span class="col-xs-3" ng-if="!$ctrl.editMode" ng-bind="$ctrl.selectedItem.treatment"></span>
+                        <span class="col-xs-3" ng-if="$ctrl.editMode">
+                            <textarea class="form-control" ng-model="$ctrl.selectedItem.treatment">
+                            </textarea>
+                        </span>
                     </div>
                 </div>
             </div>
