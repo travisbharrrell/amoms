@@ -204,12 +204,25 @@ homescreen.component('homeScreen', {
         ctrl.showAdmin = function () {
             return ctrl.loggedIn && ctrl.sideBarDisplayValues[3] === true;
         };
+
+        function setAllDefaults() {
+            ctrl.selectedItem = {};
+
+            ctrl.showPatientDetailScreen = false;
+            ctrl.showUserDetailScreen = false;
+            ctrl.showRxDetailScreen = false;
+            ctrl.showRx = false;
+            ctrl.apptStarted = false;
+            ctrl.editMode = false; 
+            ctrl.patientFilter = {last: ''};
+            ctrl.loggedInUser = {};
+        }
         
         ctrl.sideBarItems = [
             {
                 name: 'Patients', 
                 router: function (displayValues) {
-                    ctrl.selectedItem = {};
+                    setAllDefaults();
                     displayValues[0] = true;
                     displayValues[1] = false;
                     displayValues[2] = false;
@@ -219,7 +232,7 @@ homescreen.component('homeScreen', {
             {
                 name: 'Reports', 
                 router: function (displayValues) {
-                    ctrl.selectedItem = {};
+                    setAllDefaults();
                     ctrl.showReportMain = true;
                     displayValues[0] = false;
                     displayValues[1] = true;
@@ -230,7 +243,7 @@ homescreen.component('homeScreen', {
             {
                 name: 'Schedule', 
                 router: function (displayValues) {
-                    ctrl.selectedItem = {};
+                    setAllDefaults();
                     displayValues[0] = false;
                     displayValues[1] = false;
                     displayValues[2] = true;
@@ -240,7 +253,7 @@ homescreen.component('homeScreen', {
             {
                 name: 'Admin', 
                 router: function (displayValues) {
-                    ctrl.selectedItem = {};
+                    setAllDefaults();
                     displayValues[0] = false;
                     displayValues[1] = false;
                     displayValues[2] = false;
