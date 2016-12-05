@@ -445,28 +445,28 @@ homescreen.component('homeScreen', {
                 "practitioner":"Nutritionist Guy",
                 "patient":"Brown Fowler",
                 "patientPhone":"7705552212",
-                "datetime":"",
-                "state":""
+                "datetime":"2016-12-04T11:00:00",
+                "state":"M"
             },
             {
                 "practitioner":"Nutritionist Guy",
                 "patient":"Carter Young",
                 "patientPhone":"7705553212",
-                "datetime":"2016-12-05T10:00:00",
+                "datetime":"2016-12-04T12:00:00",
                 "state":"C"
             },
             {
                 "practitioner":"Nutritionist Guy",
                 "patient":"Jacobson Ferguson",
                 "patientPhone":"7705554212",
-                "datetime":"2016-12-05T10:00:00",
+                "datetime":"2016-12-04T13:00:00",
                 "state":"C"
             },
             {
                 "practitioner":"Nutritionist Guy",
                 "patient":"Grant Roy",
                 "patientPhone":"7705555212",
-                "datetime":"2016-12-05T10:00:00",
+                "datetime":"2016-12-04T14:00:00",
                 "state":"C"
             },
             {
@@ -480,63 +480,63 @@ homescreen.component('homeScreen', {
                 "practitioner":"Nutritionist Guy",
                 "patient":"Tracey Ward",
                 "patientPhone":"7705557212",
-                "datetime":"2016-12-05T10:00:00",
+                "datetime":"2016-12-05T11:00:00",
                 "state":"C"
             },
             {
                 "practitioner":"Nutritionist Guy",
                 "patient":"Tasha Ford",
                 "patientPhone":"7705558212",
-                "datetime":"2016-12-05T10:00:00",
+                "datetime":"2016-12-05T13:00:00",
                 "state":"C"
             },
             {
                 "practitioner":"Nutritionist Guy",
                 "patient":"Rene Bartlett",
                 "patientPhone":"7705559212",
-                "datetime":"2016-12-05T10:00:00",
+                "datetime":"2016-12-05T14:00:00",
                 "state":"C"
             },
             {
                 "practitioner":"Nutritionist Guy",
                 "patient":"Lacey Franco",
                 "patientPhone":"7705551211",
-                "datetime":"2016-12-05T10:00:00",
+                "datetime":"2016-12-06T10:00:00",
                 "state":"C"
             },
             {
                 "practitioner":"Nutritionist Guy",
                 "patient":"Laurel Hale",
                 "patientPhone":"7705551213",
-                "datetime":"2016-12-05T10:00:00",
+                "datetime":"2016-12-06T11:00:00",
                 "state":"C"
             },
             {
                 "practitioner":"Nutritionist Guy",
                 "patient":"Lee Tran",
                 "patientPhone":"7705551214",
-                "datetime":"2016-12-05T10:00:00",
+                "datetime":"2016-12-06T13:00:00",
                 "state":"C"
             },
             {
                 "practitioner":"Nutritionist Guy",
                 "patient":"Lelia Ball",
                 "patientPhone":"7705551215",
-                "datetime":"2016-12-05T10:00:00",
+                "datetime":"2016-12-06T14:00:00",
                 "state":"C"
             },
             {
                 "practitioner":"Nutritionist Guy",
                 "patient":"Kellie Moreno",
                 "patientPhone":"7705551216",
-                "datetime":"2016-12-05T10:00:00",
+                "datetime":"2016-12-06T15:00:00",
                 "state":"C"
             },
             {
                 "practitioner":"Nutritionist Guy",
                 "patient":"Hannah Lowery",
                 "patientPhone":"7705551217",
-                "datetime":"2016-12-05T10:00:00",
+                "datetime":"2016-12-06T16:00:00",
                 "state":"C"
             },
             {
@@ -550,14 +550,23 @@ homescreen.component('homeScreen', {
                 "practitioner":"Nutritionist Guy",
                 "patient":"Huffman Bates",
                 "patientPhone":"7705551219",
-                "datetime":"2016-12-05T10:00:00",
-                "state":"C"
+                "datetime":"2016-12-01T10:00:00",
+                "state":"M"
             }
         ];
 
-        ctrl.futureAppt = function(appt)
+        ctrl.filterFutureAppt = function(appointment)
         {
-            return (new Date(appt.datetime)) > (new Date());
+            return (new Date(appointment.datetime)) > (new Date());
+        }
+        
+        ctrl.filterMissedAppt = function(appointment)
+        {
+            var now = new Date();
+            var lastWeek = (new Date()).setDate(now.getDate() - 7);
+            var apptDate = new Date(appointment.datetime);
+            
+            return (appointment.state == 'M' && lastWeek < apptDate && apptDate <= now);
         }
         
         ctrl.medicalEvents = [

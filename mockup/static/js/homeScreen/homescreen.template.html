@@ -179,20 +179,34 @@
                     <div class="row content-header">
                         <span class="col-xs-2 patient-label">Name</span>
                         <span class="col-xs-2 patient-label">Phone</span>
+                        <span class="col-xs-2 patient-label">Seeing</span>
                         <span class="col-xs-2 patient-label">Appt. Time</span>
                     </div>
                     <div class="row event-row"
-                         ng-repeat="appointment in $ctrl.appointments | orderBy: 'datetime' | filter:$ctrl.futureAppt"
+                         ng-repeat="appointment in $ctrl.appointments | orderBy: 'datetime' | filter:$ctrl.filterFutureAppt"
                          ng-class-odd="'odd-row'">
                          <span class="col-xs-2" ng-bind="appointment.patient"></span>
                          <span class="col-xs-2" ng-bind="appointment.patientPhone"></span>
+                         <span class="col-xs-2" ng-bind="appointment.practitioner"></span>
                          <span class="col-xs-2" ng-bind="appointment.datetime | date:'MM/dd hh:mm'"></span>
                     </div>
                 </div>
                 
-                <div ng-if="$ctrl.selectedItem == 'Missed'">
+                <div class="content-container container-fluid" ng-if="$ctrl.selectedItem == 'Missed'">
                     <!-- Missed Appointment -->
-                    <h1>Missed Appointments</h1>
+                    <span class="content-container-label">Missed Appointments</span>
+                    <div class="row content-header">
+                        <span class="col-xs-2 patient-label">Name</span>
+                        <span class="col-xs-2 patient-label">Phone</span>
+                        <span class="col-xs-2 patient-label">Appt. Time</span>
+                    </div>
+                    <div class="row event-row"
+                         ng-repeat="appointment in $ctrl.appointments | orderBy: 'datetime' | filter:$ctrl.filterMissedAppt"
+                         ng-class-odd="'odd-row'">
+                         <span class="col-xs-2" ng-bind="appointment.patient"></span>
+                         <span class="col-xs-2" ng-bind="appointment.patientPhone"></span>
+                         <span class="col-xs-2" ng-bind="appointment.datetime | date:'MM/dd hh:mm'"></span>
+                    </div>                    
                 </div>
                 
                 <div ng-if="$ctrl.selectedItem == 'OStats'">
