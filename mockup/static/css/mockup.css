@@ -73,6 +73,56 @@
     padding: 10px 0;
 }
 
+.schedule-row {
+    height: 45px;
+}
+
+.schedule-appointment-entry {
+    position:absolute;
+    width:110px;
+    height:40px;
+    background-color:#85a7d3;
+    border-style:solid;
+    font-size:14px;
+    text-align:center;
+}
+
+.appointment-time-9 {
+    top:145px;
+}
+
+.appointment-time-10 {
+    top:190px;
+}
+
+.appointment-time-11 {
+    top:235px;
+}
+
+.appointment-time-13 {
+    top:325px;
+}
+
+.appointment-time-14 {
+    top:370px;
+}
+
+.appointment-time-15{
+    top:415px;
+}
+
+.appointment-col-1 {
+    right: 900px;
+}
+
+.appointment-col-2 {
+    right: 700px;
+}
+
+.appointment-col-3 {
+    right: 500px;
+}
+
 .content-header {
     padding: 10px 0;
     border-bottom: 2px solid black;

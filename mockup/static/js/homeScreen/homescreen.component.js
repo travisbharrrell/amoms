@@ -194,6 +194,7 @@ homescreen.component('homeScreen', {
         };
 
         ctrl.showReports = function () {
+            console.log("report sidebar: " + ctrl.sideBarDisplayValues[1]);
             return ctrl.loggedIn && ctrl.sideBarDisplayValues[1] === true;
         };
 
@@ -232,8 +233,10 @@ homescreen.component('homeScreen', {
             {
                 name: 'Reports', 
                 router: function (displayValues) {
+                    console.log("clicked reports in side bar");
                     setAllDefaults();
-                    ctrl.showReportMain = true;
+                    ctrl.reportType = null;
+                    //ctrl.showReportMain = true;
                     displayValues[0] = false;
                     displayValues[1] = true;
                     displayValues[2] = false;
@@ -244,6 +247,7 @@ homescreen.component('homeScreen', {
                 name: 'Schedule', 
                 router: function (displayValues) {
                     setAllDefaults();
+                    ctrl.scheduleView = 'main';
                     displayValues[0] = false;
                     displayValues[1] = false;
                     displayValues[2] = true;
@@ -558,7 +562,7 @@ homescreen.component('homeScreen', {
             },
             {
                 "practitioner":"Nutritionist Guy",
-                "patient":"Osorn Kramer",
+                "patient":"Osborn Kramer",
                 "patientPhone":"7705556212",
                 "datetime":"2016-12-05T10:00:00",
                 "state":"C"
@@ -592,14 +596,14 @@ homescreen.component('homeScreen', {
                 "state":"C"
             },
             {
-                "practitioner":"Nutritionist Guy",
+                "practitioner":"Doctor One",
                 "patient":"Laurel Hale",
                 "patientPhone":"7705551213",
                 "datetime":"2016-12-06T11:00:00",
                 "state":"C"
             },
             {
-                "practitioner":"Nutritionist Guy",
+                "practitioner":"Doctor One",
                 "patient":"Lee Tran",
                 "patientPhone":"7705551214",
                 "datetime":"2016-12-06T13:00:00",
@@ -722,6 +726,52 @@ homescreen.component('homeScreen', {
                 privLevel: 'Practitioner',
                 practType: 'Nutritionist',
                 name: 'Nutritionist Guy',
+                dob: 'January 09, 1988',
+                startDate: 'May 10, 2014',
+                rfc: '213123123123',
+                cedula: '12312312312312',
+                address: '600 Walker Way Marcus, Ga',
+                shifts: {
+                    M: {work: true, times: '8a-5p'},
+                    T: {work: false, times: null},
+                    W: {work: true, times: '8a-5p'},
+                    R: {work: false, times: null},
+                    F: {work: true, times: '8a-5p'},
+                    St: {work: false, times: null},
+                    Sn: {work: false, times: null}
+                },
+                apptLength: null,
+                phone: '312-313-1234',
+                active: true
+            },
+            {
+                username: 'DoctorOne',
+                privLevel: 'Practitioner',
+                practType: 'Nutritionist',
+                name: 'Doctor One',
+                dob: 'January 09, 1988',
+                startDate: 'May 10, 2014',
+                rfc: '213123123123',
+                cedula: '12312312312312',
+                address: '600 Walker Way Marcus, Ga',
+                shifts: {
+                    M: {work: true, times: '8a-5p'},
+                    T: {work: false, times: null},
+                    W: {work: true, times: '8a-5p'},
+                    R: {work: false, times: null},
+                    F: {work: true, times: '8a-5p'},
+                    St: {work: false, times: null},
+                    Sn: {work: false, times: null}
+                },
+                apptLength: null,
+                phone: '312-313-1234',
+                active: true
+            },
+            {
+                username: 'Therapist',
+                privLevel: 'Practitioner',
+                practType: 'Nutritionist',
+                name: 'Therapist',
                 dob: 'January 09, 1988',
                 startDate: 'May 10, 2014',
                 rfc: '213123123123',
