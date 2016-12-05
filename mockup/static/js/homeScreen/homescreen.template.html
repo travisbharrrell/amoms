@@ -424,7 +424,7 @@
                 
                 <div class="btn-group" 
                      ng-if="$ctrl.scheduleView == 'main'">
-                    <button type="button" class="btn btn-default"
+                    <button type="button" class="btn btn-info"
                             ng-click="$ctrl.scheduleView = 'newAppointment'; $ctrl.newAppointmentForm=0;">New Appointment</button>
                 </div>
                 
@@ -444,24 +444,24 @@
                         </div>
                         <br/>
                         <div class="btn-group event-row">
-                            <button type="button" class="btn btn-default"
+                            <button type="button" class="btn btn-info"
                                     ng-click="$ctrl.scheduleView = 'main'">
                                 Cancel
                             </button>
                             <button type="button" 
-                                    class="btn btn-default"
+                                    class="btn btn-info"
                                     ng-if="appointment.state != 'I'"
                                     ng-click="appointment.state='I'; $ctrl.scheduleView = 'main'">
                                 Check In
                             </button>
                             <button type="button" 
-                                    class="btn btn-default"
+                                    class="btn btn-info"
                                     ng-if="appointment.state == 'I'"
                                     ng-click="appointment.state='O'; $ctrl.scheduleView = 'main'">
                                 Check Out
                             </button>
                             <button type="button" 
-                                    class="btn btn-default"
+                                    class="btn btn-info"
                                     ng-click="appointment.state='M'; $ctrl.scheduleView = 'main'">
                                 Missed
                             </button>                            
@@ -551,12 +551,12 @@
                         
                         <div class="row event-row">
                             <button type="button" 
-                                    class="btn btn-default"
+                                    class="btn btn-info"
                                     ng-click="$ctrl.newAppointmentForm = 0; $ctrl.scheduleView = 'main'">
                                 Save
                             </button>
                             <button type="button" 
-                                    class="btn btn-default"
+                                    class="btn btn-info"
                                     ng-click="$ctrl.newAppointmentForm = 0; $ctrl.scheduleView = 'main'">
                                 Cancel
                             </button>
