@@ -289,18 +289,34 @@
 
             <!-- Reports View -->
             <div ng-if="$ctrl.showReports()">
-                <div class="content-container" ng-if="$ctrl.selectedItem == null">
+                <div class="content-container container-fluid">
                     <!-- Report List -->
                     <span class="content-container-label">Reports</span>
-                    <ul>
-                    <li><span ng-click="$ctrl.selectedItem='UpComing'">Appointment Call List</span>
-                    <li><span ng-click="$ctrl.selectedItem='Missed'">Missed Appointments</span>
-                    <li><span ng-click="$ctrl.selectedItem='OStats'">Office Stats</span>
-                    <li><span ng-click="$ctrl.selectedItem='PStats'">Practitioner Stats</span>
-                    </ul>
+                    <div class="btn-group event-row">
+                        <button type="button" 
+                                class="btn btn-default"
+                                ng-click="$ctrl.reportType = 'UpComing'">
+                            Appointment Call List
+                        </button>
+                        <button type="button" 
+                                class="btn btn-default" 
+                                ng-click="$ctrl.reportType = 'Missed'">
+                            Missed Appointments
+                        </button>
+                        <button type="button" 
+                                class="btn btn-default"
+                                ng-click="$ctrl.reportType = 'OStats'">
+                            Office Stats
+                        </button>
+                        <button type="button" 
+                                class="btn btn-default"
+                                ng-click="$ctrl.reportType = 'PStats'">
+                            Practitioner Stats
+                        </button>
+                    </div>
                 </div>
                 
-                <div class="content-container container-fluid" ng-if="$ctrl.selectedItem == 'UpComing'">
+                <div class="content-container container-fluid" ng-if="$ctrl.reportType === 'UpComing'">
                     <!-- Up Coming Appointment -->
                     <span class="content-container-label">Appointments</span>
                     <div class="row content-header">
@@ -319,7 +335,7 @@
                     </div>
                 </div>
                 
-                <div class="content-container container-fluid" ng-if="$ctrl.selectedItem == 'Missed'">
+                <div class="content-container container-fluid" ng-if="$ctrl.reportType === 'Missed'">
                     <!-- Missed Appointment -->
                     <span class="content-container-label">Missed Appointments</span>
                     <div class="row content-header">
@@ -336,12 +352,12 @@
                     </div>                    
                 </div>
                 
-                <div ng-if="$ctrl.selectedItem == 'OStats'">
+                <div ng-if="$ctrl.reportType === 'OStats'">
                     <!-- OFfice Statistics -->
                     <h1>Office Statistics</h1>
                 </div>
                 
-                <div ng-if="$ctrl.selectedItem == 'PStats'">
+                <div ng-if="$ctrl.reportType === 'PStats'">
                     <!-- Practitioner Statistics -->
                     <h1>Practitioner Statistics</h1>
                 </div>

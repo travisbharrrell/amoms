@@ -9,6 +9,7 @@ homescreen.component('homeScreen', {
         ctrl.showPatientDetailScreen = false;
         ctrl.showUserDetailScreen = false;
         ctrl.showRxDetailScreen = false;
+        ctrl.reportType = '';
         ctrl.sideBarDisplayValues = [true, false, false, false];
         ctrl.contentLabel = "";
         ctrl.selectedItem = {};
@@ -219,6 +220,7 @@ homescreen.component('homeScreen', {
                 name: 'Reports', 
                 router: function (displayValues) {
                     ctrl.selectedItem = {};
+                    ctrl.showReportMain = true;
                     displayValues[0] = false;
                     displayValues[1] = true;
                     displayValues[2] = false;
